@@ -5,20 +5,20 @@ public class OperListaSimple {
     public void insertarInicio(int x) {
         NodoSimple nuevo = new NodoSimple(x);
 
-        if(prim == null) {
+        if (prim == null) {
             prim = nuevo;
             ult = nuevo;
-        }else {
+        } else {
             nuevo.sig = prim;
             prim = nuevo;
         }
     }
 
     public void eliminarInicio() {
-        if(prim==ult) {
+        if (prim == ult) {
             prim = null;
             ult = null;
-        }else {
+        } else {
             NodoSimple aux = prim;
             prim = prim.sig;
             aux.sig = null;
@@ -27,39 +27,47 @@ public class OperListaSimple {
 
     public void mostrar() {
         NodoSimple aux = prim;
-        for(;aux!= null;aux = aux.sig)
+        for (; aux != null; aux = aux.sig)
             System.out.println(aux.getDato());
     }
 
     public void insertarFinal(int x) {
         NodoSimple nuevo = new NodoSimple(x);
-        if(prim == null) {
-            prim = nuevo;
-            ult = nuevo;
-        }else {
-            ult.sig = nuevo;
-            ult = nuevo;
-        }
+        if (prim == null) prim = nuevo;
+        else ult.sig = nuevo;
+
+        ult = nuevo;
     }
 
     public void eliminarUltimo() {
-        if(prim==ult) {
+        if (prim == ult) {
             prim = null;
             ult = null;
-        }else {
+        } else {
             NodoSimple aux = prim;
-            for(;aux.sig!=ult;aux=aux.sig);
+            for (; aux.sig != ult; aux = aux.sig) ;
             ult = aux;
             ult.sig = null;
         }
     }
 
-    public boolean insertarEnseguida(int x,int y) {
+    public boolean insertarEnseguida(int x, int y) {
+        NodoSimple aux = prim;
+        for (; aux != null && aux.getDato() != y; aux = aux.sig) ;
 
+        if (aux == null) {
+            return false;
+        }
+
+        NodoSimple nuevo = new NodoSimple(x);
+        nuevo.sig = aux.sig;
+        aux.sig = nuevo;
+        return true;
     }
 
-    public boolean eliminarElemento(int x,int y) {
+    public boolean eliminarElemento(int y) {
 
+        return false;
     }
 
 }

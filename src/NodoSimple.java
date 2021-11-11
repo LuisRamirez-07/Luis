@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class NodoSimple {
     private int dato;
     NodoSimple sig;
