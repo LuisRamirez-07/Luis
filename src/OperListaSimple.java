@@ -27,6 +27,11 @@ public class OperListaSimple {
 
     public void mostrar() {
         NodoSimple aux = prim;
+        if (aux == null) {
+            System.out.println("No hay elementos en la lista");
+            return;
+        }
+
         for (; aux != null; aux = aux.sig)
             System.out.println(aux.getDato());
     }
@@ -75,6 +80,12 @@ public class OperListaSimple {
                 continue;
             }
             if (aux == null) return false;
+
+            if (aux == prim) {
+                prim = null;
+                return true;
+            }
+
             if (previous != null)
                 previous.sig = aux.sig;
             return true;
