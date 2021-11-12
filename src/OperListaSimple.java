@@ -73,23 +73,39 @@ public class OperListaSimple {
     public boolean eliminarElemento(int y) {
         NodoSimple aux = prim;
         NodoSimple previous = null;
-        while (true) {
-            if (aux != null && aux.getDato() != y) {
-                previous = aux;
-                aux = aux.sig;
-                continue;
-            }
-            if (aux == null) return false;
+        for (; aux != null && aux.getDato() != y; aux = aux.sig) {
+            previous = aux;
+            aux = aux.sig;
+        }
 
-            if (aux == prim) {
-                prim = null;
-                return true;
-            }
+        if (aux == null) return false;
 
-            if (previous != null)
-                previous.sig = aux.sig;
+        if (aux == prim) {
+            prim = null;
             return true;
         }
+
+        if (previous != null)
+            previous.sig = aux.sig;
+        return true;
+
+//        while (true) {
+//            if (aux != null && aux.getDato() != y) {
+//                previous = aux;
+//                aux = aux.sig;
+//                continue;
+//            }
+//            if (aux == null) return false;
+//
+//            if (aux == prim) {
+//                prim = null;
+//                return true;
+//            }
+//
+//            if (previous != null)
+//                previous.sig = aux.sig;
+//            return true;
+//        }
     }
 
 }
